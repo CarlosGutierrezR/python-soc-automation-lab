@@ -1,69 +1,69 @@
-# Python SOC Automation Lab
+# Laboratorio de automatización SOC con Python
 
-Practical Python utilities built around recurring Security Operations Center
-workflows. The repository grows incrementally from event representation and
-classification to log parsing, aggregation, detection engineering, incident
-response, and maintainable security automation.
+Utilidades prácticas en Python orientadas a tareas habituales de un Centro de
+Operaciones de Seguridad. El repositorio avanza desde la representación y
+clasificación de eventos hasta el análisis de logs, la ingeniería de detección,
+la respuesta a incidentes y la automatización mantenible.
 
-All examples use synthetic data. No production credentials, personal data, or
-real third-party indicators are included.
+Todos los ejemplos utilizan datos sintéticos. No se incluyen credenciales de
+producción, datos personales ni indicadores reales de terceros.
 
-## Operational case studies
+## Casos operativos
 
-| Case | Business outcome | Python capability | Status |
+| Caso | Resultado empresarial | Capacidad de Python | Estado |
 |---|---|---|---|
-| [01](cases/01_auth_event_summary/) | Convert a raw authentication event into an analyst-readable record | Variables, strings, booleans | Complete |
-| [02](cases/02_account_failure_classification/) | Prioritize failures according to account type | Conditional logic | Complete |
-| [03](cases/03_auth_log_parser/) | Process an authentication export and quantify failed activity | Files, loops, counters | Complete |
-| [04](cases/04_repeated_source_ips/) | Reduce failed-login noise to recurring source addresses | Lists and membership checks | Complete |
-| 05 | Aggregate authentication activity by hostname | Dictionaries | In progress |
+| [01](cases/01_resumen_evento_autenticacion/) | Convertir un evento de autenticación en un registro legible para el analista | Variables, cadenas y booleanos | Completado |
+| [02](cases/02_clasificacion_fallos_cuenta/) | Priorizar fallos según el tipo de cuenta | Lógica condicional | Completado |
+| [03](cases/03_analisis_logs_autenticacion/) | Procesar una exportación y cuantificar la actividad fallida | Archivos, bucles y contadores | Completado |
+| [04](cases/04_ips_origen_repetidas/) | Reducir el ruido a direcciones de origen recurrentes | Listas y pertenencia | Completado |
+| 05 | Agrupar actividad de autenticación por hostname | Diccionarios | En curso |
 
-## Run a case
+## Ejecución
 
-Python 3.11 or later is recommended. The current cases use only the Python
-standard library.
-
-From the repository root:
+Se recomienda Python 3.11 o posterior. Los casos actuales utilizan únicamente
+la biblioteca estándar.
 
 ```powershell
-python cases/01_auth_event_summary/main.py
-python cases/02_account_failure_classification/main.py
-python cases/03_auth_log_parser/main.py
-python cases/04_repeated_source_ips/main.py
+python cases/01_resumen_evento_autenticacion/main.py
+python cases/02_clasificacion_fallos_cuenta/main.py
+python cases/03_analisis_logs_autenticacion/main.py
+python cases/04_ips_origen_repetidas/main.py
 ```
 
-## Engineering approach
+Los casos 03 y 04 funcionan desde cualquier directorio porque resuelven sus
+datasets a partir de la ubicación del propio script.
 
-- Start from a concrete SOC question.
-- Use the smallest suitable Python abstraction.
-- Keep inputs synthetic and reproducible.
-- Validate observable results before committing a case.
-- Add error handling, logging, tests, configuration, and CLI interfaces as the
-  project advances.
+## Enfoque de ingeniería
 
-## Repository structure
+- Partir de una pregunta SOC concreta.
+- Utilizar la abstracción de Python más pequeña que resuelva el problema.
+- Trabajar con entradas sintéticas y reproducibles.
+- Validar resultados observables antes de incorporar un caso.
+- Documentar limitaciones y oportunidades de endurecimiento.
+- Incorporar manejo de errores, logging, pruebas, configuración y CLI conforme
+  aumenta la complejidad.
+
+## Estructura
 
 ```text
-cases/
-  01_auth_event_summary/
-  02_account_failure_classification/
-  03_auth_log_parser/
-  04_repeated_source_ips/
+cases/                  Casos empresariales independientes
+tests/                  Pruebas de regresión ejecutables localmente
+.github/workflows/      Integración continua
+PROCEDENCIA_DATOS.md    Procedencia y restricciones de los datos
 ```
 
-Each directory contains a focused implementation, synthetic input data when
-needed, execution instructions, an observable result, and documented operational
-limitations. Cases are maintained as independent, reviewable units.
+Cada caso contiene su implementación, datos sintéticos cuando son necesarios,
+instrucciones de ejecución, resultado observable y limitaciones operativas.
 
-## Quality controls
+## Controles de calidad
 
 ```powershell
 python -m unittest discover -s tests -v
 ```
 
-The same regression suite runs in GitHub Actions on supported Python versions.
+La misma suite se ejecuta en GitHub Actions sobre varias versiones de Python.
 
-## License
+## Licencia
 
-This project is released under the [MIT License](LICENSE).
+El proyecto se publica bajo la [licencia MIT](LICENSE).
 
