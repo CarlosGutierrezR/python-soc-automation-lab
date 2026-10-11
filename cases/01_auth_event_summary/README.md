@@ -21,7 +21,7 @@ attempt succeeded.
 ## Observable result
 
 ```text
-Fecha: 2024-03-10 21:47:00 Usuario: rnunez Equipo: WKSTN-SAL-004 IP de origen: 10.10.30.55 Metodo: password Resultado: failure
+Timestamp: 2024-03-10 21:47:00 Username: rnunez Hostname: WKSTN-SAL-004 Source IP: 10.10.30.55 Method: password Result: failure
 Was this attempt successful? False
 ```
 

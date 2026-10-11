@@ -1,24 +1,29 @@
-ruta = "cases/03_auth_log_parser/data/auth_events.txt"
-total_eventos = 0
-total_fallos = 0
+from pathlib import Path
 
-with open(ruta, "r", encoding="utf-8") as archivo:
-    for linea in archivo:
-        linea_limpia = linea.strip()
-        timestamp, hostname, src_ip, username, result = linea_limpia.split("|")
+data_path = Path(__file__).parent / "data" / "auth_events.txt"
+total_events = 0
+total_failures = 0
+
+with data_path.open("r", encoding="utf-8") as file:
+    for line in file:
+        clean_line = line.strip()
+        if not clean_line:
+            continue
+
+        timestamp, hostname, source_ip, username, result = clean_line.split("|")
 
         print(
             f"Timestamp: {timestamp}, "
             f"Hostname: {hostname}, "
-            f"Source IP: {src_ip}, "
+            f"Source IP: {source_ip}, "
             f"Username: {username}, "
             f"Result: {result}"
         )
 
-        total_eventos += 1
+        total_events += 1
         if result == "failure":
-            total_fallos += 1
+            total_failures += 1
 
-print(f"Total events: {total_eventos}")
-print(f"Failures: {total_fallos}")
+print(f"Total events: {total_events}")
+print(f"Failures: {total_failures}")
 

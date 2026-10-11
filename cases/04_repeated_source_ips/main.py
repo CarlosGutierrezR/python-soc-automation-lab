@@ -1,24 +1,29 @@
-ruta = "cases/04_repeated_source_ips/data/failed_login_ips.txt"
-list_ips = []
-ips_repeated = []
-cant_ips_una_vez = 0
+from pathlib import Path
 
-with open(ruta, "r", encoding="utf-8") as archivo:
-    for linea in archivo:
-        linea_limpia = linea.strip()
-        list_ips.append(linea_limpia)
+data_path = Path(__file__).parent / "data" / "failed_login_ips.txt"
+source_ips = []
+repeated_ips = []
+single_occurrence_count = 0
+
+with data_path.open("r", encoding="utf-8") as file:
+    for line in file:
+        source_ip = line.strip()
+        if not source_ip:
+            continue
+
+        source_ips.append(source_ip)
 
         if (
-            list_ips.count(linea_limpia) > 1
-            and linea_limpia not in ips_repeated
+            source_ips.count(source_ip) > 1
+            and source_ip not in repeated_ips
         ):
-            ips_repeated.append(linea_limpia)
+            repeated_ips.append(source_ip)
 
-for ip in list_ips:
-    if list_ips.count(ip) == 1:
-        cant_ips_una_vez += 1
+for source_ip in source_ips:
+    if source_ips.count(source_ip) == 1:
+        single_occurrence_count += 1
 
-print(f"Total failed-login lines: {len(list_ips)}")
-print(f"Repeated IPs (appeared more than once): {ips_repeated}")
-print(f"IPs that occurred only once: {cant_ips_una_vez}")
+print(f"Total failed-login lines: {len(source_ips)}")
+print(f"Repeated IPs (appeared more than once): {repeated_ips}")
+print(f"IPs that occurred only once: {single_occurrence_count}")
 

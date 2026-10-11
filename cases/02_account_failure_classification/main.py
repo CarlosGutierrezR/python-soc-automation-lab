@@ -1,47 +1,42 @@
-datos = [
+events = [
     {
-        "Usuario": "mdominguez",
-        "Tipo_de_evento": "interactive_logon",
-        "Resultado": "success",
+        "username": "mdominguez",
+        "result": "success",
     },
     {
-        "Usuario": "adm_sys01",
-        "Tipo_de_evento": "admin_logon",
-        "Resultado": "failure",
+        "username": "adm_sys01",
+        "result": "failure",
     },
     {
-        "Usuario": "svc_backup",
-        "Tipo_de_evento": "service_logon",
-        "Resultado": "failure",
+        "username": "svc_backup",
+        "result": "failure",
     },
     {
-        "Usuario": "rnunez",
-        "Tipo_de_evento": "interactive_logon",
-        "Resultado": "failure",
+        "username": "rnunez",
+        "result": "failure",
     },
     {
-        "Usuario": "adm_netops",
-        "Tipo_de_evento": "admin_logon",
-        "Resultado": "success",
+        "username": "adm_netops",
+        "result": "success",
     },
 ]
 
-for dato in datos:
-    usuario = dato["Usuario"]
-    resultado = dato["Resultado"]
+for event in events:
+    username = event["username"]
+    result = event["result"]
 
-    if resultado == "success":
-        print(f"{usuario}: {resultado}, no action needed")
-    elif resultado == "failure":
-        if usuario.startswith("adm_"):
-            print(f"{usuario}: {resultado.upper()}, admin account - notable")
-        elif usuario.startswith("svc_"):
+    if result == "success":
+        print(f"{username}: {result}, no action needed")
+    elif result == "failure":
+        if username.startswith("adm_"):
+            print(f"{username}: {result.upper()}, admin account - notable")
+        elif username.startswith("svc_"):
             print(
-                f"{usuario}: {resultado.upper()}, service account - notable; "
+                f"{username}: {result.upper()}, service account - notable; "
                 "service accounts should not fail interactively"
             )
         else:
-            print(f"{usuario}: {resultado.upper()}, standard user account")
+            print(f"{username}: {result.upper()}, standard user account")
     else:
-        print(f"{usuario}: {resultado.upper()}, unknown authentication result")
+        print(f"{username}: {result.upper()}, unknown authentication result")
 

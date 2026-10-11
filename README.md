@@ -53,6 +53,17 @@ cases/
 
 Each directory contains a focused implementation, synthetic input data when
 needed, execution instructions, an observable result, and documented operational
-limitations. Completed cases are committed independently so the history shows
-how the project evolves over time.
+limitations. Cases are maintained as independent, reviewable units.
+
+## Quality controls
+
+```powershell
+python -m unittest discover -s tests -v
+```
+
+The same regression suite runs in GitHub Actions on supported Python versions.
+
+## License
+
+This project is released under the [MIT License](LICENSE).
 
