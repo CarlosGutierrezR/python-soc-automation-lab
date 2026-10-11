@@ -1,15 +1,39 @@
 # Account failure classification
 
-## Scenario
+## Business problem
 
-Classify authentication outcomes and distinguish failed activity involving
-administrative, service, and standard user accounts.
+Authentication failures do not carry the same operational risk. A failed login
+for an administrative or service account warrants different analyst attention
+from a standard user entering an incorrect password.
 
-## Demonstrated behavior
+## Operational objective
 
-- Evaluates successful, failed, and unknown outcomes separately.
-- Uses account prefixes instead of hard-coded identities.
-- Applies nested conditional logic to separate result and account type.
+Classify each authentication attempt by result and, for failures, identify the
+account category from the organization's naming convention.
+
+## Solution approach
+
+- Evaluate successful, failed, and unknown outcomes separately.
+- Identify administrative accounts through the `adm_` prefix.
+- Identify service accounts through the `svc_` prefix.
+- Treat remaining failed identities as standard user accounts.
+- Avoid hard-coded decisions tied to one specific username.
+
+## Observable result
+
+```text
+mdominguez: success, no action needed
+adm_sys01: FAILURE, admin account - notable
+svc_backup: FAILURE, service account - notable; service accounts should not fail interactively
+rnunez: FAILURE, standard user account
+adm_netops: success, no action needed
+```
+
+## Operational limitations
+
+The account categories depend on a documented naming convention. A production
+implementation should validate results and obtain identity type from an
+authoritative directory when available.
 
 ## Run
 

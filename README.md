@@ -8,14 +8,14 @@ response, and maintainable security automation.
 All examples use synthetic data. No production credentials, personal data, or
 real third-party indicators are included.
 
-## Current cases
+## Operational case studies
 
-| Case | SOC task | Python focus | Status |
+| Case | Business outcome | Python capability | Status |
 |---|---|---|---|
-| 01 | Summarize an authentication event | Variables, strings, booleans | Complete |
-| 02 | Classify authentication failures by account type | Conditional logic | Complete |
-| 03 | Parse an authentication export and count failures | Files, loops, counters | Complete |
-| 04 | Identify repeated failed-login source IPs | Lists and membership checks | Complete |
+| [01](cases/01_auth_event_summary/) | Convert a raw authentication event into an analyst-readable record | Variables, strings, booleans | Complete |
+| [02](cases/02_account_failure_classification/) | Prioritize failures according to account type | Conditional logic | Complete |
+| [03](cases/03_auth_log_parser/) | Process an authentication export and quantify failed activity | Files, loops, counters | Complete |
+| [04](cases/04_repeated_source_ips/) | Reduce failed-login noise to recurring source addresses | Lists and membership checks | Complete |
 | 05 | Aggregate authentication activity by hostname | Dictionaries | In progress |
 
 ## Run a case
@@ -51,5 +51,8 @@ cases/
   04_repeated_source_ips/
 ```
 
-Each directory contains a focused implementation and a short case description.
+Each directory contains a focused implementation, synthetic input data when
+needed, execution instructions, an observable result, and documented operational
+limitations. Completed cases are committed independently so the history shows
+how the project evolves over time.
 
